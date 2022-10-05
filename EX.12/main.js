@@ -14,10 +14,13 @@ window.addEventListener('keydown', (event) => {
             style.top = (parseInt(style.top) - 3) + '%';
             break;
         case 'ArrowDown': 
-            style.top = (parseInt(style.top) + 3) + '%'; break;
+            style.top = (parseInt(style.top) + 3) + '%'; 
+            break;
         case 'ArrowLeft': 
-            style.left = (parseInt(style.left) - 3) + '%'; break;
+            style.left = (parseInt(style.left) - 3) + '%'; 
+            break;
         case 'ArrowRight': 
-            style.left = (parseInt(style.left) + 3) + '%'; break;
+            style.left = (parseInt(style.left) + 3) + '%'; 
+            break;
     }
 });
