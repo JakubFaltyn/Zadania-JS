@@ -7,20 +7,34 @@ window.addEventListener('load', () => {
     style.top = '50%';
 })
 
-window.addEventListener('keydown', (event) => {
-    console.log(style.top);
-    switch (event.key) {
-        case 'ArrowUp': 
-            style.top = (parseInt(style.top) - 3) + '%';
-            break;
-        case 'ArrowDown': 
-            style.top = (parseInt(style.top) + 3) + '%'; 
-            break;
-        case 'ArrowLeft': 
-            style.left = (parseInt(style.left) - 3) + '%'; 
-            break;
-        case 'ArrowRight': 
-            style.left = (parseInt(style.left) + 3) + '%'; 
-            break;
-    }
-});
+KeyboardController({
+    38: function() {style.top = (parseInt(style.top) - 3) + '%';},
+    40: function() {style.top = (parseInt(style.top) + 3) + '%';},
+    37: function() {style.left = (parseInt(style.left) - 3) + '%';},
+    39: function() {style.left = (parseInt(style.left) + 3) + '%';}
+}, 200);
+
+function KeyboardController(keys, repeat) {
+    var timers= {};
+    document.onkeydown= function(event) {
+        var key= (event || window.event).keyCode;
+        if (!(key in keys))
+            return true;
+        if (!(key in timers)) {
+            timers[key]= null;
+            keys[key]();
+            if (repeat!==0)
+                timers[key]= setInterval(keys[key], repeat);
+        }
+        return false;
+    };
+
+    document.onkeyup= function(event) {
+        var key= (event || window.event).keyCode;
+        if (key in timers) {
+            if (timers[key]!==null)
+                clearInterval(timers[key]);
+            delete timers[key];
+        }
+    };
+};
