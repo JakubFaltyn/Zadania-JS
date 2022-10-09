@@ -1,12 +1,16 @@
 document.querySelector("#submit_button").onclick = function () {
-  document.querySelector("#list").innerHTML += `
-            <div>
-                <li>
-                    ${document.querySelector("#task input").value}
-                    <button class="remove">REMOVE</button>
-                </li>
-            </div>
-        `;
+
+  const newDiv = document.createElement("div");
+  const newLi = document.createElement("li");
+  const button = document.createElement("button");
+  button.classList.add('remove');
+  newLi.appendChild(button)
+
+  button.textContent = "Remove";
+  newLi.textContent = document.querySelector("#task input").value;
+
+  document.querySelector("#list").appendChild(newDiv.appendChild(newLi));
+
   var current_tasks = document.querySelectorAll(".remove");
   for (var i = 0; i < current_tasks.length; i++) {
     current_tasks[i].onclick = function () {
