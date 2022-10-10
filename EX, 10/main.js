@@ -8,12 +8,7 @@ const dog = {
   },
 
   getDog() {
-    let properties = Object.values(dog);
-    let str = '';
-    properties.slice(0, 3).map((element) => {
-      str += (element + ' ');
-    });
-    return str;
+    return [this.size, this.color, this.name].join(' ')
   },
 };
 
