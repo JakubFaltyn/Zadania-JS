@@ -8,6 +8,13 @@ const dog = {
   },
 
   getDog() {
-    return dog.name + dog.size + dog.color;
+    let properties = Object.values(dog);
+    let str = '';
+    properties.slice(0, 3).map((element) => {
+      str += (element + ' ');
+    });
+    return str;
   },
 };
+
+console.log(dog.getDog());
