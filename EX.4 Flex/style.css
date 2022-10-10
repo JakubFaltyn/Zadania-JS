@@ -1,0 +1,30 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    height: 100%;
+    width:100%;
+    margin: 0;
+    display:flex;
+    flex-direction: column;
+}
+
+.big-container {
+    background-color: green;
+    flex: 0.25 1 0
+}
+
+.small-container {
+    display:flex;
+    flex: 1 1 0
+}
+
+.big-block {
+    background-color: red;
+    flex: 0.6 1 0
+}
+.small-block {  
+    background-color: aqua;
+    flex: 0.2 1 0
+}
