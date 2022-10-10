@@ -7,30 +7,27 @@ window.addEventListener('load', () => {
     style.top = '50%';
 })
 
-KeyboardController({
-    38: function() {style.top = (parseInt(style.top) - 3) + '%';},
-    40: function() {style.top = (parseInt(style.top) + 3) + '%';},
-    37: function() {style.left = (parseInt(style.left) - 3) + '%';},
-    39: function() {style.left = (parseInt(style.left) + 3) + '%';}
-}, 200);
-
-function KeyboardController(keys, repeat) {
+function KeyboardController() {
     var timers= {};
+    var keys = {
+        38: function() {style.top = (parseInt(style.top) - 3) + '%';},
+        40: function() {style.top = (parseInt(style.top) + 3) + '%';},
+        37: function() {style.left = (parseInt(style.left) - 3) + '%';},
+        39: function() {style.left = (parseInt(style.left) + 3) + '%';}
+    }
+
     document.onkeydown= function(event) {
-        var key= (event || window.event).keyCode;
-        if (!(key in keys))
-            return true;
+        var key= (event).keyCode;
         if (!(key in timers)) {
             timers[key]= null;
             keys[key]();
-            if (repeat!==0)
-                timers[key]= setInterval(keys[key], repeat);
+            timers[key]= setInterval(keys[key], 200);
         }
         return false;
     };
 
     document.onkeyup= function(event) {
-        var key= (event || window.event).keyCode;
+        var key= (event).keyCode;
         if (key in timers) {
             if (timers[key]!==null)
                 clearInterval(timers[key]);
@@ -38,3 +35,5 @@ function KeyboardController(keys, repeat) {
         }
     };
 };
+
+KeyboardController();
