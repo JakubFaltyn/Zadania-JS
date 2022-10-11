@@ -10,10 +10,10 @@ window.addEventListener('load', () => {
 function KeyboardController() {
     var timers= {};
     var keys = {
-        'ArrowUp': function() {style.top = (parseInt(style.top) - 3) + '%';},
-        'ArrowDown': function() {style.top = (parseInt(style.top) + 3) + '%';},
-        'ArrowLeft': function() {style.left = (parseInt(style.left) - 3) + '%';},
-        'ArrowRight': function() {style.left = (parseInt(style.left) + 3) + '%';}
+        ArrowUp() {style.top = (parseInt(style.top) - 3) + '%';},
+        ArrowDown() {style.top = (parseInt(style.top) + 3) + '%';},
+        ArrowLeft() {style.left = (parseInt(style.left) - 3) + '%';},
+        ArrowRight() {style.left = (parseInt(style.left) + 3) + '%';}
     }
 
     document.onkeydown= function(event) {
