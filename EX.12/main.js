@@ -10,14 +10,14 @@ window.addEventListener('load', () => {
 function KeyboardController() {
     var timers= {};
     var keys = {
-        38: function() {style.top = (parseInt(style.top) - 3) + '%';},
-        40: function() {style.top = (parseInt(style.top) + 3) + '%';},
-        37: function() {style.left = (parseInt(style.left) - 3) + '%';},
-        39: function() {style.left = (parseInt(style.left) + 3) + '%';}
+        'ArrowUp': function() {style.top = (parseInt(style.top) - 3) + '%';},
+        'ArrowDown': function() {style.top = (parseInt(style.top) + 3) + '%';},
+        'ArrowLeft': function() {style.left = (parseInt(style.left) - 3) + '%';},
+        'ArrowRight': function() {style.left = (parseInt(style.left) + 3) + '%';}
     }
 
     document.onkeydown= function(event) {
-        var key= (event).keyCode;
+        var key= (event).key;
         if (!(key in timers)) {
             timers[key]= null;
             keys[key]();
@@ -27,10 +27,9 @@ function KeyboardController() {
     };
 
     document.onkeyup= function(event) {
-        var key= (event).keyCode;
-        if (key in timers) {
-            if (timers[key]!==null)
-                clearInterval(timers[key]);
+        var key= (event).key;
+        if (key in timers && timers[key]!==null) {
+            clearInterval(timers[key]);
             delete timers[key];
         }
     };
